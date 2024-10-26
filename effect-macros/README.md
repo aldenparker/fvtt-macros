@@ -1,0 +1,2 @@
+# Effect Macros
+These macros use the [Effect Macros](https://foundryvtt.com/packages/effectmacro/) module. Each file is named after the effect that it is placed on and they all have comments explaining the use and what effect activates the macro.

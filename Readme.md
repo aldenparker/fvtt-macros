@@ -1,2 +1,2 @@
 # fvtt-macros
-A repository of all the macros I use to run Founrdy v12 DND5E 4.0 games. 
+A repository of all the macros I use to run Foundry v12 DND5E 4.0+ games. All macros only support these versions as of now. Each folder defines where each macro is executed and the module requirements for that execution. Some are general macros, which will be marked with ge- as a prefix to the name, while others have names associated with the features they provide. Each folder has a readme to explain the way to use and look through them.
