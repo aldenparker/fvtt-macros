@@ -1,4 +1,19 @@
-// Brutal Critical Macro - Requires Effect Macros and should be run on Damage Rolls
+// Brutal Critical - A macro for implementing the Brutal Critical class skill. [MULTIPLE MACROS]
+
+
+// ---------- ON EFFECT CREATION ----------
+const roll_data = token.actor.getRollData();
+if (!(roll_data.hasOwnProperty("scale") && roll_data.scale.hasOwnProperty("barbarian") && roll_data.scale.barbarian.hasOwnProperty("brutal-critical"))) {
+  ui.notifications.error("Brutal Critical can not be added to actor. Actor is either not a Barbarian or does not have the brutal-critical scale value.", { localize: true });
+  effect.isSuppressed = true;
+  effect.disabled = true;
+}
+
+// ---------- ON DAMAGE ROLLS ----------
+// Check if token exists
+if (token === undefined) {
+  return;
+}
 
 // Grab all recent rolls by token and get the most recent attack and damage rolls
 const token_rolls = game.messages.filter((msg) => msg.speaker.token === token.id &&  msg.flags.hasOwnProperty("dnd5e")).filter((msg) => msg.flags.dnd5e.messageType === "roll");
@@ -11,7 +26,7 @@ const most_recent_damage_roll = token_damage_rolls[token_damage_rolls.length - 1
 
 // Check if attack roll has been made
 if (most_recent_attack_roll === undefined) {
-  ui.notifications.error("Brutal Critical Macro could not run becase no attack roll was made for it's token yet.", {localize: true});
+  return;
 }
 
 // Figure out if weapon used is a melee weapon

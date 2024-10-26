@@ -1,2 +1,5 @@
 # fvtt-macros
 A repository of all the macros I use to run Foundry v12 DND5E 4.0+ games. All macros only support these versions as of now. Each folder defines where each macro is executed and the module requirements for that execution. Some are general macros, which will be marked with ge- as a prefix to the name, while others have names associated with the features they provide. Each folder has a readme to explain the way to use and look through them.
+
+# NOTICE
+Any macros here that use flags to store data will reference the 1024bits-bag-of-holding module. This my private compendium module I use to store all my general data for games, such as classes, races, items, etc. These macros are all attached to items and features in this module so that is why it is used. If the macro sets a flag, you will have to change the module used to set the flag to something you have installed.
