@@ -16,7 +16,7 @@ if (token === undefined) {
 }
 
 // Grab all recent rolls by token and get the most recent attack and damage rolls
-const token_rolls = game.messages.filter((msg) => msg.speaker.token === token.id &&  msg.flags.hasOwnProperty("dnd5e")).filter((msg) => msg.flags.dnd5e.messageType === "roll");
+const token_rolls = game.messages.filter((msg) => msg.speaker.token === token.id &&  msg.flags.hasOwnProperty("dnd5e")).filter((msg) => msg.flags.dnd5e.hasOwnProperty("roll"));
 
 const token_attack_rolls = token_rolls.filter((msg) => msg.flags.dnd5e.roll.type === "attack");
 const token_damage_rolls = token_rolls.filter((msg) => msg.flags.dnd5e.roll.type === "damage");
@@ -49,18 +49,23 @@ if (most_recent_damage_roll.rolls[0].isCritical === true) {
   const chat_msg_config = {
     flavor: "Brutal Critical - Extra Damage Roll",
     content: roll.total,
-    speaker: most_recent_damage_roll.speaker,
+    speaker:  {
+      actor: actor.id,
+      alias: actor.name,
+      scene: scene.id,
+      token: token.id
+    },
     rolls: [roll],
     flags: {
       dnd5e: {
-        activity: most_recent_damage_roll.flags.dnd5e.activity,
         item: {
           id: item.id,
           type: item.type,
           uuid: `Actor.${token.actor.id}.Item.${item.id}`
         },
-        messageType: most_recent_damage_roll.flags.dnd5e.messageType,
-        roll: most_recent_damage_roll.flags.dnd5e.roll,
+        roll: {
+          type: "damage"
+        },
         targets: most_recent_damage_roll.flags.dnd5e.targets
       }
     }
